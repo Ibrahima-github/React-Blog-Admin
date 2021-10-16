@@ -6,6 +6,7 @@ import {Utilisateurs} from './Utilisateurs';
 
 import {Navigation} from './Navigation';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { AddCategorie } from './AddCategorie';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/posts' component={Posts}/>
         <Route path='/categories' component={Categories}/>
         <Route path='/utilisateurs' component={Utilisateurs}/>
+        <Route path='/addCategorie' component={AddCategorie} />
       </Switch>
       </div>
     </BrowserRouter>

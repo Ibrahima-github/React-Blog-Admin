@@ -7,7 +7,7 @@ export const Posts = () => {
 
     
     useEffect(() => {
-        fetch(process.env.REACT_APP_API+'posts', {mode: 'no-cors'})
+        fetch(process.env.REACT_APP_API+'posts')
             .then(response => {
                 if(response.status === 200){
                    return response.json()
@@ -43,6 +43,7 @@ export const Posts = () => {
                 <tbody>
                     {posts.map(post=>
                         <tr key={post.PostId}>
+                        <td>{post.PostId}</td>
                         <td>{post.PostName}</td>
                         <td>{post.PostDescription}</td>
                         <td>{post.PostYoutubeIframe}</td>

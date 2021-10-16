@@ -7,8 +7,13 @@ export const Utilisateurs = () => {
 
     
     useEffect(() => {
-        fetch(process.env.REACT_APP_API+'utilisateurs', {mode: 'no-cors', method: 'GET'})
-            .then(response => response.json())
+        fetch(process.env.REACT_APP_API+'utilisateurs')
+            .then(response => {  if(response.status === 200){
+                return response.json()
+             }
+             console.log(response.status);
+             throw response;
+            })
             .then(data => {
                 console.log(data);
                 setUtilisateurs(data);
