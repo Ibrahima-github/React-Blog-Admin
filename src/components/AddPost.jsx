@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
 
 
-export class EditCategory extends Component  {
+export class AddPost extends Component  {
 
     constructor(props){
         super(props);
@@ -11,18 +11,22 @@ export class EditCategory extends Component  {
     
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'categories', {method:'PUT',
+        fetch(process.env.REACT_APP_API+'posts', {method:'POST',
             headers:{
                 'Accept': 'application/json',
                 'Content-type' : 'application/json'
             },
             body: JSON.stringify({
-                CategoryId: event.target.CategoryId.value,
-                CategoryName: event.target.CategoryName.value})
+                PostName: event.target.PostName.value,
+                Category: event.target.Category.value,
+                PostDescription: event.target.PostDescription.value,
+                PostYoutubeHref: event.target.PostYoutubeHref.value})
         })
         .then(response => {
-            console.log(response.status);
             response.json();
+        })
+        .then(result => {
+            alert(result);
         })
         .catch(error => {
             console.error(error.message)
@@ -42,38 +46,45 @@ export class EditCategory extends Component  {
                             aria-labelledby="contained-modal-title-vcenter"
                             centered
                         >
-                            <Modal.Header clooseButton>
+                            <Modal.Header >
                                 <Modal.Title id="contained-modal-title-vcenter">
-                                    Modifier une catégorie
+                                    Ajouter un Post
                                 </Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Row>
                                     <Col sm={6}>
                                         <Form  onSubmit={this.handleSubmit}>
-                                            <Form.Group controlId="CategoryName">
-                                                <Form.Label>ID de catégorie</Form.Label>
+                                            <Form.Group controlId="Post">
+                                                <Form.Label>Création d'un post</Form.Label>
                                                 <Form.Control 
                                                 type="text" 
-                                                name="CategoryId"
+                                                name="PostName"
                                                 required
-                                                disableddefaultValue={this.props.CategoryId}
+                                                placeholder="Entrez un titre"
                                                 />
-                                                
-                                            </Form.Group>
-                                            <Form.Group controlId="CategoryName">
-                                                <Form.Label>Nom de catégorie</Form.Label>
                                                 <Form.Control 
                                                 type="text" 
-                                                name="CategoryName"
+                                                name="Category"
                                                 required
-                                                defaultValue={this.props.CategoryName}
+                                                placeholder="Entrez une catégorie"
                                                 />
-                                                
+                                                <Form.Control 
+                                                type="text" 
+                                                name="PostDescription"
+                                                required
+                                                placeholder="Entrez une description"
+                                                />
+                                                <Form.Control 
+                                                type="text" 
+                                                name="PostYoutubeHref"
+                                                required
+                                                placeholder="Entrez l'url youtube de la vidéo"
+                                                />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button variant="primary" type="submit">
-                                                    Mettre à jour
+                                                    Ajouter une catégorie
                                                 </Button>
                                             </Form.Group>
                                         </Form>
@@ -90,3 +101,10 @@ export class EditCategory extends Component  {
         }
 }
 
+
+//
+//headers:{
+ //   'Accept':'application/json',
+ //   'Content-Type':'application/json',
+ //   "Access-Control-Allow-Origin": "*"
+//},

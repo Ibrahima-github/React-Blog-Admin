@@ -6,7 +6,7 @@ import {Utilisateurs} from './Utilisateurs';
 
 import {Navigation} from './Navigation';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import { AddCategorie } from './AddCategorie';
+import { AddCategorie } from './components/AddCategorie';
 
 function App() {
   return (

@@ -1,18 +1,18 @@
 
 import React, { Component} from 'react';
-import { AddCategorie } from './components/AddCategorie';
-import { EditCategory } from './components/EditCategory';
+import { AddUtilisateur } from './components/AddUtilisateur';
+import { EditUtilisateur } from './components/EditUtilisateur';
 import {Button, ButtonToolbar, Table} from 'react-bootstrap';
 
-export class Categories extends Component {
+export class Utilisateurs extends Component {
     constructor(props){
         super(props);
-        this.state={category:[], addModalShow: false, editModalShow: false};
+        this.state={utilisateur:[], addModalShow: false, editModalShow: false};
     }
  
    refreshList(){
 
-       fetch(process.env.REACT_APP_API+'categories')
+       fetch(process.env.REACT_APP_API+'utilisateurs')
            .then(response => {
                console.log(response);
                if(response.status === 200){
@@ -23,7 +23,7 @@ export class Categories extends Component {
            }    )
            .then(data => {
                console.log(data);
-               this.setState({category:data});
+               this.setState({utilisateur:data});
            })
            .catch(error => {
                console.error(error.message)
@@ -34,9 +34,9 @@ export class Categories extends Component {
        this.refreshList();
    }
 
-   deleteCategory(categoryid){
+   deletePost(postid){
        if(window.confirm('Êtes vous sûr de vouloir supprimer ?')){
-           fetch(process.env.REACT_APP_API + 'categories/' + categoryid, {
+           fetch(process.env.REACT_APP_API + 'utilisateurs/' + postid, {
                method: 'DELETE',
                header: {
                    'Accept': 'application/json',
@@ -52,7 +52,7 @@ export class Categories extends Component {
 
    
    render(){
-            const { category, categoryid, categoryname} = this.state;
+            const { utilisateur, utilisateurid, utilisateurname, utilisateuremailaddress, utilisateurpassword} = this.state;
             let addModalClose = () => this.setState({addModalShow:false});
             let editModalClose = () => this.setState({editModalShow:false});
 
@@ -61,26 +61,31 @@ export class Categories extends Component {
                 <div>
         
                     <div className="mt-5 d-flex justify-content-left">
-                        This is Categories page
+                        This is Posts page
                         <Table className="mt-4" striped bordered hover size="sm">
                             <thead>
                                 <tr>
-                                    <th>Category Id</th>
-                                    <th>Category Name</th>
+                                    <th>Utilisateur Id</th>
+                                    <th>Utilisateur Name</th>
+                                    <th>utilisarteur Email Adress</th>
+                                    <th>Utilisateur Password </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {category.map(category=>
-                                    <tr key={category.CategoryId}>
-                                    <td>{category.CategoryId}</td>
-                                    <td>{category.CategoryName}</td>
+                                {utilisateur.map(utilisateur=>
+                                    <tr key={utilisateur.UtilisateurId}>
+                                    <td>{utilisateur.UtilisateurId}</td>
+                                    <td>{utilisateur.UtilisateurUsername}</td>
+                                    <td>{utilisateur.UtilisateurEmailAddress}</td>
+                                    <td>{utilisateur.UtilisateurPassword}</td>
                                     <td>
                                         <ButtonToolbar>
                                             <Button 
                                                 className="mr-2" 
                                                 variant="info"
                                                 onClick={() => this.setState({
-                                                    editModalShow:true, categoryid: category.CategoryId, categoryname:category.CategoryName
+                                                    editModalShow:true, utilisateurid: utilisateur.UtilisateurId, utilisateurname:utilisateur.UtilisateurUsername,
+                                                    utilisateuremailaddress: utilisateur.UtilisateurEmailAddress, utilisateurpassword: utilisateur.UtilisateurPassword
                                                 })}>Modifier
                                             </Button>
 
@@ -88,15 +93,17 @@ export class Categories extends Component {
                                                 className="mr-2" 
                                                 variant="danger"
                                                 onClick={() => 
-                                                this.deleteCategory(category.CategoryId)
+                                                this.deletePost(utilisateur.UtilisateurId)
                                                 }>Supprimer
                                             </Button>
 
-                                            <EditCategory
+                                            <EditUtilisateur
                                                 show={this.state.editModalShow}
                                                 onHide={editModalClose}
-                                                categoryid={categoryid}
-                                                categoryname={categoryname}
+                                                utilisateurid={utilisateurid}
+                                                utilisateurname={utilisateurname}
+                                                utilisateuremailaddress={utilisateuremailaddress}
+                                                utilisateurpassword={utilisateurpassword}
                                             />
                                         </ButtonToolbar>
                                     </td>
@@ -108,9 +115,9 @@ export class Categories extends Component {
                             <Button 
                                 variant='primary'
                                 onClick={() => this.setState({addModalShow:true})}>
-                                    Ajouter une catégorie
+                                    Ajouter un utilisateur
                                 </Button>
-                                <AddCategorie show={this.state.addModalShow}
+                                <AddUtilisateur show={this.state.addModalShow}
                                     onHide={addModalClose} />
                         </ButtonToolbar>
                     </div>
