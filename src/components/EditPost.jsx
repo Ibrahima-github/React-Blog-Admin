@@ -22,13 +22,14 @@ export class EditPost extends Component  {
                 Category: event.target.Category.value,
                 PostDescription: event.target.PostDescription.value,
                 PostYoutubeHref: event.target.PostYoutubeHref.value,
-                ImageFileName: event.target.ImageFileName.value})
+                AdsTitle : event.target.AdsTitle.value,
+                AdsImageFileName : this.photofilename,
+                AdsLink : event.target.AdsLink.value})
         })
-        .then(response => {
-            console.log(response.status);
-            response.json();
-        })
-        .then(result => {
+        .then(response => 
+            response.json()
+        )
+        .then((result) => {
             alert(result);
         })
         .catch(error => {

@@ -21,10 +21,10 @@ export class AddUtilisateur extends Component  {
                 UtilisateurEmailAddress: event.target.UtilisateurEmailAddress.value,
                 UtilisateurPassword: event.target.UtilisateurPassword.value})
         })
-        .then(response => {
-            response.json();
-        })
-        .then(result => {
+        .then(response => 
+            response.json()
+        )
+        .then((result) => {
             alert(result);
         })
         .catch(error => {

@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
-import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
+import {Modal, Button, Row, Col, Form, Image} from 'react-bootstrap';
 
 
 export class AddPost extends Component  {
 
     constructor(props){
         super(props);
+        this.state={category:[]};
         this.handleSubmit= this.handleSubmit.bind(this);
+        this.handleFileSelected=this.handleFileSelected.bind(this);
     }
     
+    photofilename = "anonymous.png";
+    imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
+
+    componentDidMount(){
+        fetch(process.env.REACT_APP_API+'categories' )
+        .then(response=> response.json())
+        .then(data => {
+            this.setState({category:data});
+        })
+        
+    }
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'posts', {method:'POST',
@@ -20,12 +33,15 @@ export class AddPost extends Component  {
                 PostName: event.target.PostName.value,
                 Category: event.target.Category.value,
                 PostDescription: event.target.PostDescription.value,
-                PostYoutubeHref: event.target.PostYoutubeHref.value})
+                PostYoutubeHref: event.target.PostYoutubeHref.value,
+                AdsTitle : event.target.AdsTitle.value,
+                AdsImageFileName : this.imagesrc,
+                AdsLink : event.target.AdsLink.value})
         })
-        .then(response => {
-            response.json();
-        })
-        .then(result => {
+        .then(response => 
+            response.json()
+        )
+        .then((result) => {
             alert(result);
         })
         .catch(error => {
@@ -33,7 +49,31 @@ export class AddPost extends Component  {
         }); 
     }
 
-    
+    handleFileSelected(event){
+        event.preventDefault();
+        this.photofilename=event.target.files[0].name;
+        const formData = new FormData();
+
+        formData.append(
+            "myFile",
+            event.target.files[0],
+            event.target.files[0].name
+        );
+
+        fetch(process.env.REACT_APP_API+'Posts/SaveFile', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then((result) => {
+            this.imagesrc=process.env.REACT_APP_PHOTOPATH+result
+            console.log({result})
+        },
+        (error) => {
+            alert('Failed');
+        })
+        
+    }
     
     
         render(){
@@ -63,12 +103,12 @@ export class AddPost extends Component  {
                                                 required
                                                 placeholder="Entrez un titre"
                                                 />
-                                                <Form.Control 
-                                                type="text" 
-                                                name="Category"
-                                                required
-                                                placeholder="Entrez une catégorie"
-                                                />
+                                                <Form.Control as='select' name='Category'>
+                                                    {this.state.category.map(category=>
+                                                        <option key={category.CategoryId}>
+                                                            {category.CategoryName}
+                                                        </option>)}
+                                                </Form.Control>
                                                 <Form.Control 
                                                 type="text" 
                                                 name="PostDescription"
@@ -81,13 +121,36 @@ export class AddPost extends Component  {
                                                 required
                                                 placeholder="Entrez l'url youtube de la vidéo"
                                                 />
+                                                <Form.Control 
+                                                type="text" 
+                                                name="AdsTitle"
+                                                required
+                                                placeholder="Entrez le titre de votre pub"
+                                                />
+                                                <Form.Control 
+                                                type="text" 
+                                                name="AdsLink"
+                                                required
+                                                placeholder="Entrez l'url de votre pub"
+                                                />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Button variant="primary" type="submit">
-                                                    Ajouter une catégorie
+                                                    Ajouter un Post
                                                 </Button>
                                             </Form.Group>
                                         </Form>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <Image 
+                                            width="200px"
+                                            height="200px"
+                                            src={this.imagesrc}
+                                        />
+                                        <input 
+                                            onChange={this.handleFileSelected}
+                                            type="File"
+                                        />
                                     </Col>
                                 </Row>
                             </Modal.Body>

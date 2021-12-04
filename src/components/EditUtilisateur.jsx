@@ -22,11 +22,10 @@ export class EditUtilisateur extends Component  {
                 UtilisateurEmailAddress: event.target.UtilisateurEmailAddress.value,
                 UtilisateurPassword: event.target.UtilisateurPassword.value})
         })
-        .then(response => {
-            console.log(response.status);
-            response.json();
-        })
-        .then(result => {
+        .then(response => 
+            response.json()
+        )
+        .then((result) => {
             alert(result);
         })
         .catch(error => {

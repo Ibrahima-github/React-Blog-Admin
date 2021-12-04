@@ -19,11 +19,11 @@ export class AddCategorie extends Component  {
             body: JSON.stringify({
                 CategoryName: event.target.CategoryName.value})
         })
-        .then(response => {
-            console.log(response.status);
-            response.json();
-        })
-        .then(result => {
+        .then(response => 
+            
+            response.json()
+        )
+        .then((result) => {
             alert(result);
         })
         .catch(error => {
