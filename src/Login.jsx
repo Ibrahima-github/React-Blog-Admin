@@ -1,70 +1,79 @@
-import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React, { Component, useState } from "react";
+import {Home} from './Home';
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import "./Login.css";
 
-export class Login extends Component{
+export const Login = (setUtilisateurUsername) => {
 
-    constructor(props){
-        super(props);
-        this.handleSubmit= this.handleSubmit.bind(this);
+  const [UtilisateurEmailAddress, setUtilisateurEmailAddress] = useState('');
+  const [UtilisateurPassword, setUtilisateurPassword] = useState('');
+  const [redirection, setRedirection] = useState(false);
+
+  const submit = async(e) => {
+    e.preventDefault();
+
+    const response = await fetch(process.env.REACT_APP_API + 'utilisateurs/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        UtilisateurEmailAddress,
+        UtilisateurPassword
+      })
+    });
+
+    const content = await response.json();
+    
+    if(content.message == 'success'){
+      setRedirection(true);
+    }else{
+      alert(content.message);
     }
+    console.log(content);
 
-    handleSubmit(event){
-        event.preventDefault();
-        var jwt = require('jsonwebtoken');
-        
-        var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 
-        fetch(process.env.REACT_APP_API+'utilisateurs', {method:'GET',
-            headers:{
-                'Accept': 'application/json',
-                'Content-type' : 'application/json'
-            },
-            body: JSON.stringify({
-                UtilisateurUsername: event.target.UtilisateurUsername.value,
-                UtilisateurPassword: event.target.UtilisateurPassword.value})
-        })
-        .then(response => 
-            response.json()
-        )
-        .then((result) => {
-            alert(result);
-        })
-        .catch(error => {
-            console.error(error.message)
-        }); 
-    }
+  }
+  if(redirection){
+    return <Redirect to="/home" />
+  }
+  
 
-    render(){
+ 
 
-        return (
-          <div className="Login">
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group size="lg" controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  
-                  type="text"
-                  name="UtilisateurName"
-             
-                />
-              </Form.Group>
-              <Form.Group size="lg" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="UtilisateurPassword"
-                  
-                />
-              </Form.Group>
-              <Button block size="lg" type="submit" >
-                Login
-              </Button>
-            </Form>
-            
-          </div>
-          
-        );
-    }
+    return (
+      <div className="Login">
+        <main className="form-signin">
+          <form onSubmit={submit}>
+            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+
+            <div className="form-floating">
+              <input 
+                type="email" 
+                className="form-control" 
+                id="floatingInput" 
+                placeholder="name@example.com" 
+                onChange={e => setUtilisateurEmailAddress(e.target.value)} />
+              <label >Email address</label>
+            </div>
+            <div className="form-floating">
+              <input 
+                type="password" 
+                className="form-control" 
+                id="floatingPassword" 
+                placeholder="Password" 
+                onChange={e => setUtilisateurPassword(e.target.value)}  />
+              <label >Password</label>
+            </div>
+
+            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+          </form>
+        </main>
+      </div>
+
+    );
+ 
 }

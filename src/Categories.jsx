@@ -3,6 +3,8 @@ import React, { Component} from 'react';
 import { AddCategorie } from './components/AddCategorie';
 import { EditCategory } from './components/EditCategory';
 import {Button, ButtonToolbar, Table} from 'react-bootstrap';
+import { Navigation } from './Navigation';
+import { Redirect } from 'react-router';
 
 export class Categories extends Component {
     constructor(props){
@@ -10,8 +12,10 @@ export class Categories extends Component {
         this.state={category:[], addModalShow: false, editModalShow: false};
     }
  
+    
    refreshList(){
 
+    
        fetch(process.env.REACT_APP_API+'categories')
            .then(response => {
                console.log(response);
@@ -31,6 +35,7 @@ export class Categories extends Component {
    }
 
    componentDidMount(){
+       
        this.refreshList();
    }
 
@@ -55,11 +60,11 @@ export class Categories extends Component {
             const { category, categoryid, categoryname} = this.state;
             let addModalClose = () => this.setState({addModalShow:false});
             let editModalClose = () => this.setState({editModalShow:false});
-
+        
             return(
              
                 <div>
-        
+        <Navigation />
                     <div className="mt-5 d-flex justify-content-left">
                         This is Categories page
                         <Table className="mt-4" striped bordered hover size="sm">

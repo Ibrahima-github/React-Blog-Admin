@@ -1,11 +1,20 @@
-import React from 'react';
 
+import {Navigation} from './Navigation';
+import React, {useState, useEffect} from 'react';;
 
-export const Home = () => {
+export const Home = (UtilisateurUsername) => {
+ 
+  return(
+    <div className="mt-5 d-flex justify-content-left">
+                This is HomePage
 
-    return(
-        <div className="mt-5 d-flex justify-content-left">
-            This is HomePage
-        </div>
-    )
+                <div>{UtilisateurUsername ? 'Bienvenue' + UtilisateurUsername : "Vous n'êtes pas connectés"}</div>
+                <div className="container">
+                <h3 className="m-3 d'flex justify-content-center">Blog Admin Panel</h3>
+                <Navigation UtilisateurUsername={UtilisateurUsername}/>
+
+</div>
+            </div>
+  );
+    
 }

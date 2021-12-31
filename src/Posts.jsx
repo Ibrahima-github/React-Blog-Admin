@@ -3,15 +3,18 @@ import React, { Component} from 'react';
 import { AddPost } from './components/AddPost';
 import { EditPost } from './components/EditPost';
 import {Button, ButtonToolbar, Table} from 'react-bootstrap';
+import { Navigation } from './Navigation';
 
 export class Posts extends Component {
     constructor(props){
         super(props);
-        this.state={post:[], addModalShow: false, editModalShow: false};
+        this.state={post:[], addModalShow: false, editModalShow: false, UtilisateurUsername: false};
     }
+    
  
    refreshList(){
 
+    
        fetch(process.env.REACT_APP_API+'posts')
            .then(response => {
                console.log(response);
@@ -52,14 +55,14 @@ export class Posts extends Component {
 
    
    render(){
-            const { post, postid, postname, postcategory, postarticleuploaddate, postdescription, postyoutubehref, postimagefilename} = this.state;
+            const { post, postid, postname, postcategory, postarticleuploaddate, postdescription, postyoutubehref, postimagefilename, UtilisateurUsername} = this.state;
             let addModalClose = () => this.setState({addModalShow:false});
             let editModalClose = () => this.setState({editModalShow:false});
 
             return(
              
                 <div>
-        
+        <Navigation />
                     <div className="mt-5 d-flex justify-content-left">
                         This is Posts page
                         <Table className="mt-4" striped bordered hover size="sm">

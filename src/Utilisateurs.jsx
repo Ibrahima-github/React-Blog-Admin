@@ -7,7 +7,7 @@ import {Button, ButtonToolbar, Table} from 'react-bootstrap';
 export class Utilisateurs extends Component {
     constructor(props){
         super(props);
-        this.state={utilisateur:[], addModalShow: false, editModalShow: false};
+        this.state={utilisateur:[], addModalShow: false, editModalShow: false, UtilisateurUsername: false};
     }
  
    refreshList(){
