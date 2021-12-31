@@ -25,7 +25,7 @@ function App() {
             
           console.log(content.title);
 
-          if(content.title == 'Unauthorized'){
+          if(content.title === 'Unauthorized'){
             setRedirect(true);
           }else{
             alert(content.message);

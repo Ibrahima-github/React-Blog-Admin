@@ -4,7 +4,6 @@ import { AddCategorie } from './components/AddCategorie';
 import { EditCategory } from './components/EditCategory';
 import {Button, ButtonToolbar, Table} from 'react-bootstrap';
 import { Navigation } from './Navigation';
-import { Redirect } from 'react-router';
 
 export class Categories extends Component {
     constructor(props){

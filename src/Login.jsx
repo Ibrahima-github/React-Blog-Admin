@@ -1,9 +1,8 @@
-import React, { Component, useState } from "react";
-import {Home} from './Home';
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import React, {  useState } from "react";
+import { Redirect } from "react-router-dom";
 import "./Login.css";
 
-export const Login = (setUtilisateurUsername) => {
+export const Login = () => {
 
   const [UtilisateurEmailAddress, setUtilisateurEmailAddress] = useState('');
   const [UtilisateurPassword, setUtilisateurPassword] = useState('');
@@ -27,7 +26,7 @@ export const Login = (setUtilisateurUsername) => {
 
     const content = await response.json();
     
-    if(content.message == 'success'){
+    if(content.message === 'success'){
       setRedirection(true);
     }else{
       alert(content.message);

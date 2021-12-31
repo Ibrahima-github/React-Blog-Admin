@@ -55,7 +55,7 @@ export class Posts extends Component {
 
    
    render(){
-            const { post, postid, postname, postcategory, postarticleuploaddate, postdescription, postyoutubehref, postimagefilename, UtilisateurUsername} = this.state;
+            const { post, postid, postname, postcategory, postarticleuploaddate, postdescription, postyoutubehref, postimagefilename} = this.state;
             let addModalClose = () => this.setState({addModalShow:false});
             let editModalClose = () => this.setState({editModalShow:false});
 
