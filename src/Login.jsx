@@ -32,8 +32,6 @@ export const Login = () => {
       alert(content.message);
     }
     console.log(content);
-
-
   }
   if(redirection){
     return <Redirect to="/home" />

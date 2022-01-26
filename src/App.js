@@ -21,23 +21,24 @@ function App() {
 
           console.log(response);
           
+          if(response.status !== 200){
+            setRedirect(true);
+          }
            const content = await response.json();
             
-          console.log(content.title);
+          //console.log(content.title);
 
-          if(content.title === 'Unauthorized'){
+          if(content && content.title === 'Unauthorized'){
             setRedirect(true);
-          }else{
-            alert(content.message);
+            
           }
         }
       )()
+      {redirect ? <Redirect to="/" /> : <Redirect to="/home" />}
     })
     return (
-        <BrowserRouter>
-        {redirect ? <Redirect to="/" /> : <Redirect to="/home" />}
-            
-
+      <BrowserRouter>
+      
             
                 <Switch>
                     <Route path='/' component={() => <Login  />} exact />

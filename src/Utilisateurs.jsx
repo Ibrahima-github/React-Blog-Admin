@@ -3,6 +3,7 @@ import React, { Component} from 'react';
 import { AddUtilisateur } from './components/AddUtilisateur';
 import { EditUtilisateur } from './components/EditUtilisateur';
 import {Button, ButtonToolbar, Table} from 'react-bootstrap';
+import { Navigation } from './Navigation';
 
 export class Utilisateurs extends Component {
     constructor(props){
@@ -59,7 +60,7 @@ export class Utilisateurs extends Component {
             return(
              
                 <div>
-        
+        <Navigation />
                     <div className="mt-5 d-flex justify-content-left">
                         This is Posts page
                         <Table className="mt-4" striped bordered hover size="sm">
