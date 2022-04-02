@@ -13,6 +13,7 @@ export class Utilisateurs extends Component {
  
    refreshList(){
 
+    
        fetch(process.env.REACT_APP_API+'utilisateurs')
            .then(response => {
                console.log(response);

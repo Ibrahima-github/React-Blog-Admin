@@ -1,0 +1,148 @@
+{
+  "main": {
+    "name":"Ibrahima SALL",
+    "description":"Bonjour, bienvenue sur mon portfolio réalisé avec React. En reconversion, j'ai appris beaucoup de choses durant mes formations dans le domaine de l'informatique  et ce site me sert à me présenter, mais aussi vous lister mes compétences en programmation.",
+    "image":"profilepic.jpeg",
+    "bio":"Passionné par la programmation informatique et après 13 ans dans la logistique qui connait un essort fulgurant grâce à l'ecommerce, je me suis réorienté vers le développement. Toujours enthousiaste à l'idée de découvrir de nouvelles choses et de travailler en équipe.",
+    "contactmessage":"Si vous voulez me contacter, n'hésitez pas à me soumettre ce formulaire.",
+    "email": "ibrahimasall.dev@gmail.com",
+    "phone": "+33 7 53 35 81 12",
+    "github":"https://github.com/ibrahima-github",
+    "project":"https://github.com/ibrahima-github/React-portfolio",
+    "address":{
+      "street":"41 rue Auguste Blanqui",
+      "city":"Choisy le roi",
+      "state":"France",
+      "zip": "94600"
+    },
+    "website": "https://www.ibrahimasall.com",
+    "resumedownload":"../documents/IbrahimaSall.pdf",
+    "social":[
+      {
+        "name":"facebook",
+        "url":"https://www.facebook.com/profile.php?id=100067548330796",
+        "className":"fa fa-facebook"
+      },
+      {
+        "name":"linkedin",
+        "url":"https://www.linkedin.com/in/ibrahima-sall-developpeur/",
+        "className":"fa fa-linkedin"
+      },
+      {
+        "name":"instagram",
+        "url":"https://www.instagram.com/is_votreappsurmesure/",
+        "className":"fa fa-instagram"
+      },
+      {
+        "name":"github",
+        "url":"https://github.com/ibrahima-github",
+        "className":"fa fa-github"
+      }
+    ]
+  },
+  "resume":{
+    "skillmessage":"Vous pouvez ici voir les technologies avec lesquelles je suis le plus familier.",
+    "education":[
+      {
+        "school":"Doranco",
+      "degree":"Bac +3/4, Concepteur, développeur d'applications informatique",
+      "graduated":"Août 2021",
+      "description":"Avec déja une bonne base, il m'était simple de coder, avec de bonnes pratiques et de comprendre le contenu de formation. Je suis fin près à faire de la conception et développement d'applications mon métier parce qu'ayant reçu une très bonne formation, je suis complètement autonome dans l'apprentissage d'une nouvelle technologie."
+    
+      },
+      
+      {
+        "school":"Afpa",
+        "degree":"Bac +2, titre professionel de développeur et web mobile",
+        "graduated":"Octobre 2019",
+        "description":"Durant cette formation, j'ai mis le premier pas dans l'univers du développement. Ca n'a pas été facile de s'adapter à la méthode d'apprentissage des technologies. Mais j'ai acquis de bonnes notions"
+      }
+   
+    ],
+    "work":[
+      {
+        "company":"Mtbe",
+        "title":"Développeur Web",
+        "years":"juillet - Août 2021",
+        "description":"Je travaille sur la création d'un site web en React."
+      },
+      {
+        "company":"Micro entreprise: Ibrahima SALL",
+        "title":"Développeur Web",
+        "years":"Depuis 2019",
+        "description":"Depuis la création de mon statut, je crée essentiellement des sites de ecommerce avec WooCommerce et des sites vitrines avec React."
+      },
+      {
+        "company":"Micro entreprise: Surya Mohan Kudikala",
+        "title":"Développeur Wordpress ",
+        "years":"Septembre - Octobre 2019",
+        "description":"J'ai travaillé sur la création d'un site de eRestaurant avec WooCommerce."
+      }
+    ],
+    "skills":[
+      {
+        "name":"Node.js",
+        "level":"50%"
+      },
+      {
+        "name":"MySql",
+        "level":"65%"
+      },
+      {
+        "name":"SqlServer",
+        "level":"70%"
+      },
+      {
+        "name":"CSS",
+        "level":"45%"
+      },
+      {
+        "name":"ReactJs",
+        "level":"60%"
+      },
+      {
+        "name":"C#",
+        "level":"70%"
+      },
+      {
+        "name":"JAVA",
+        "level":"35%"
+      },
+      {
+        "name":"Wordpress",
+        "level":"70%"
+      }
+    ]
+  },
+  "portfolio":{
+    "projects": [
+      {
+        "title":"Site e-commerce ",
+        "category":"Site développé avec Wordpress",
+        "image":"itechtouch.PNG",
+        "url":"https://itechtouch.com/"
+      },
+      {
+        "title":"Blog",
+        "category":"Blog développé avec React et API Asp .Net.",
+        "image":"employee_tracker.gif",
+        "url":"https://youtu.be/B9lgCpPGvjQm",
+        "repo":"https://github.com/vanscoyro/EmployeeManagement"
+      },
+      {
+        "title":"Flappy Bird Clone",
+        "category":"Application mobile créée avec React Native",
+        "image":"142933265-d2a42056-c1c4-469c-ab14-8a307fc962c9.mp4",
+        "repo":"https://github.com/Ibrahima-github/Flappy-Bird-React-Native"
+      },
+      {
+        "title":"Tesla Clone",
+        "category":"Front-end du Clône de l'application mobile de Tesla avec React-Native",
+        "image":"teslaClone.mp4",
+        "repo":"https://github.com/Ibrahima-github/React-Native-TeslaClone"
+      }
+      
+    
+    ]
+  }
+}

@@ -17,7 +17,6 @@ export const Login = () => {
         'Accept': 'application/json',
         'Content-type': 'application/json'
       },
-      credentials: "include",
       body: JSON.stringify({
         UtilisateurEmailAddress,
         UtilisateurPassword

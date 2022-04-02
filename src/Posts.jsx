@@ -37,6 +37,10 @@ export class Posts extends Component {
        this.refreshList();
    }
 
+   componentDidUpdate(){
+       this.refreshList();
+   }
+
    deletePost(postid){
        if(window.confirm('Êtes vous sûr de vouloir supprimer ?')){
            fetch(process.env.REACT_APP_API + 'posts/' + postid, {

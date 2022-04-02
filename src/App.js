@@ -36,6 +36,7 @@ function App() {
       )()
       {redirect ? <Redirect to="/" /> : <Redirect to="/home" />}
     })
+    
     return (
       <BrowserRouter>
       
