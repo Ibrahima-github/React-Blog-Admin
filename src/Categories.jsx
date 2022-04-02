@@ -15,6 +15,7 @@ export class Categories extends Component {
    refreshList(){
 
     
+    
        fetch(process.env.REACT_APP_API+'categories')
            .then(response => {
                console.log(response);

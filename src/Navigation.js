@@ -1,53 +1,71 @@
-import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import {Link, NavLink} from 'react-router-dom';
+import React, {Component} from 'react';
+import {  Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
-export const Navigation = (UtilisateurUsername) => {
+ export class Navigation extends Component {
 
-    const logout = async () =>{
-        await fetch(process.env.REACT_APP_API + 'utilisateurs/logout', {
+     Logout (event){
+        event.preventDefault();
+         fetch(process.env.REACT_APP_API + 'utilisateurs/logout', {
             method: "POST",
-            headers:{'Content-type': 'application/json'},
+            headers:{'Content-type': 'application/json',},
             credentials: 'include'
         })
     }
 
-    let menu;
+    render(){
 
-    if(UtilisateurUsername === ''){
-        menu = (
-            <Nav>
-
-                <NavLink className="d-inline p-2 bg-dark text-white" to="/home">Home</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/posts">Posts</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/categories">Catégories</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/utilisateurs">Utilisateurs</NavLink>
-                        <Link className="nav-link" to="/">Login</Link>
-            </Nav>
-        );
-    }else(
-        menu = (
-            <Nav>
-
-                <NavLink className="d-inline p-2 bg-dark text-white" to="/Home">Home</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/posts">Posts</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/categories">Catégories</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/utilisateurs">Utilisateurs</NavLink>
-                        <Link className="nav-link" to="/" onClick={logout}>Logout</Link>
-            </Nav>
-        )
-    )
-    
-    return(
-        <Navbar>
-            <Navbar.Toggle />
-            <Navbar.Collapse id="basic-navbar-nav">
-               
-                    {menu}
+        return(
+            <nav id="nav-wrap">
+              
+              <a className="mobile-btn" href="#nav-wrap" title="Show navigation">
+                Show navigation
+              </a>
+              <a className="mobile-btn" href="#home" title="Hide navigation">
+                Hide navigation
+              </a>
+              
+              <ul id="nav" className="nav">
                 
-
-            </Navbar.Collapse>
-        </Navbar>
-    )
+                <li className="current">
+                    <Link to="/posts">
+                        Posts
+                    </Link>
+                </li>
+    
+                <li>
+                <Link to="/categories">
+                        Catégories
+                    </Link>
+                </li>
+    
+                <li>
+                <Link to="/utilisateurs">
+                        Utilisateurs
+                    </Link>
+                </li>
+    
+                <li>
+                 <a href="https://ibrahimasall.com" target="_blank">
+                    Réalisations
+                  </a> 
+                </li>
+    
+                <li>
+                  <a  href="https://blog.ibrahimasall.com" target="_blank">
+                    Blog
+                  </a>
+                </li>
+    
+                <li>
+                  <Button onClick={this.Logout}>
+                      Logout
+                  </Button>
+                </li>
+              </ul>
+              
+            </nav>
+        )
+    }
 }
