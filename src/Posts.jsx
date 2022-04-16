@@ -26,7 +26,7 @@ export class Posts extends Component {
            }    )
            .then(data => {
                console.log(data);
-               this.setState({post:data});
+               this.setState({post:data.reverse()});
            })
            .catch(error => {
                console.error(error.message)
@@ -64,21 +64,41 @@ export class Posts extends Component {
             let editModalClose = () => this.setState({editModalShow:false});
 
             return(
-             
-                <div>
+             <div>
+                 <nav id="nav-wrap">
+          
+          <a className="mobile-btn" href="#nav-wrap" title="Show navigation">
+            Show navigation
+          </a>
+          <a className="mobile-btn" href="#home" title="Hide navigation">
+            Hide navigation
+          </a>
+                
         <Navigation />
-                    <div className="mt-5 d-flex justify-content-left">
-                        This is Posts page
+                 </nav>  <div style={{marginTop:25}}>
+
+                        <h3>This is Posts page</h3>
+                        <div className="mt-5 d-flex justify-content-right">
+                        <ButtonToolbar>
+                            <Button 
+                                variant='primary'
+                                onClick={() => this.setState({addModalShow:true})}>
+                                    Ajouter un post
+                                </Button>
+                                <AddPost show={this.state.addModalShow}
+                                    onHide={addModalClose} />
+                        </ButtonToolbar>
+                        </div>
+                        <div className="mt-5 d-flex justify-content-left">
                         <Table className="mt-4" striped bordered hover size="sm">
                             <thead>
-                                <tr>
+                                <tr className='m-2'>
                                     <th>Post Id</th>
                                     <th>Post Name</th>
                                     <th>Category</th>
                                     <th>Article upload date</th>
                                     <th>Post Description</th>
                                     <th>Post Youtube Href</th>
-                                    <th>Post ImageFileName</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,16 +149,9 @@ export class Posts extends Component {
                             </tbody>
                         </Table>
     
-                        <ButtonToolbar>
-                            <Button 
-                                variant='primary'
-                                onClick={() => this.setState({addModalShow:true})}>
-                                    Ajouter un post
-                                </Button>
-                                <AddPost show={this.state.addModalShow}
-                                    onHide={addModalClose} />
-                        </ButtonToolbar>
+                        
                     </div>
+                 </div>
                 </div>   )
         }
 

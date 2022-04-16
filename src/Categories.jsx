@@ -27,7 +27,7 @@ export class Categories extends Component {
            }    )
            .then(data => {
                console.log(data);
-               this.setState({category:data});
+               this.setState({category:data.reverse()});
            })
            .catch(error => {
                console.error(error.message)
@@ -38,6 +38,9 @@ export class Categories extends Component {
        
        this.refreshList();
    }
+   componentDidUpdate(){
+    this.refreshList();
+}
 
    deleteCategory(categoryid){
        if(window.confirm('Êtes vous sûr de vouloir supprimer ?')){
@@ -64,9 +67,24 @@ export class Categories extends Component {
             return(
              
                 <div>
-        <Navigation />
-                    <div className="mt-5 d-flex justify-content-left">
+                    <Navigation />
+                    
+                        <h3>
+
                         This is Categories page
+                        </h3>
+                        <div className="mt-5 d-flex justify-content-right">
+                        <ButtonToolbar>
+                            <Button 
+                                variant='primary'
+                                onClick={() => this.setState({addModalShow:true})}>
+                                    Ajouter une catégorie
+                                </Button>
+                                <AddCategorie show={this.state.addModalShow}
+                                    onHide={addModalClose} />
+                        </ButtonToolbar>
+                        </div>
+                        <div className="mt-5 d-flex justify-content-left">
                         <Table className="mt-4" striped bordered hover size="sm">
                             <thead>
                                 <tr>
@@ -76,7 +94,7 @@ export class Categories extends Component {
                             </thead>
                             <tbody>
                                 {category.map(category=>
-                                    <tr key={category.CategoryId}>
+                                    <tr key={category.CategoryId} className='m-2'>
                                     <td>{category.CategoryId}</td>
                                     <td>{category.CategoryName}</td>
                                     <td>
@@ -109,15 +127,7 @@ export class Categories extends Component {
                             </tbody>
                         </Table>
     
-                        <ButtonToolbar>
-                            <Button 
-                                variant='primary'
-                                onClick={() => this.setState({addModalShow:true})}>
-                                    Ajouter une catégorie
-                                </Button>
-                                <AddCategorie show={this.state.addModalShow}
-                                    onHide={addModalClose} />
-                        </ButtonToolbar>
+                        
                     </div>
                 </div>   )
         }

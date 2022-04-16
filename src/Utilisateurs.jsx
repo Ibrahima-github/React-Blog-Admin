@@ -12,7 +12,7 @@ export class Utilisateurs extends Component {
     }
  
    refreshList(){
-
+    
     
        fetch(process.env.REACT_APP_API+'utilisateurs')
            .then(response => {
@@ -25,7 +25,7 @@ export class Utilisateurs extends Component {
            }    )
            .then(data => {
                console.log(data);
-               this.setState({utilisateur:data});
+               this.setState({utilisateur:data.reverse()});
            })
            .catch(error => {
                console.error(error.message)
@@ -36,6 +36,9 @@ export class Utilisateurs extends Component {
        this.refreshList();
    }
 
+   componentDidUpdate(){
+    this.refreshList();
+}
    deletePost(postid){
        if(window.confirm('Êtes vous sûr de vouloir supprimer ?')){
            fetch(process.env.REACT_APP_API + 'utilisateurs/' + postid, {
@@ -62,14 +65,28 @@ export class Utilisateurs extends Component {
              
                 <div>
         <Navigation />
-                    <div className="mt-5 d-flex justify-content-left">
+                    
+                        <h3>
                         This is Posts page
+                            </h3>
+                        <div className="mt-5 d-flex justify-content-right">
+                        <ButtonToolbar>
+                            <Button 
+                                variant='primary'
+                                onClick={() => this.setState({addModalShow:true})}>
+                                    Ajouter un utilisateur
+                                </Button>
+                                <AddUtilisateur show={this.state.addModalShow}
+                                    onHide={addModalClose} />
+                        </ButtonToolbar>
+                        </div>
+                        <div className="mt-5 d-flex justify-content-left">
                         <Table className="mt-4" striped bordered hover size="sm">
                             <thead>
-                                <tr>
+                                <tr className='m-2'>
                                     <th>Utilisateur Id</th>
                                     <th>Utilisateur Name</th>
-                                    <th>utilisarteur Email Adress</th>
+                                    <th>Utilisateur Email Address</th>
                                     <th>Utilisateur Password </th>
                                 </tr>
                             </thead>
@@ -113,15 +130,7 @@ export class Utilisateurs extends Component {
                             </tbody>
                         </Table>
     
-                        <ButtonToolbar>
-                            <Button 
-                                variant='primary'
-                                onClick={() => this.setState({addModalShow:true})}>
-                                    Ajouter un utilisateur
-                                </Button>
-                                <AddUtilisateur show={this.state.addModalShow}
-                                    onHide={addModalClose} />
-                        </ButtonToolbar>
+                        
                     </div>
                 </div>   )
         }

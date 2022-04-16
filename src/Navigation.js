@@ -5,14 +5,13 @@ import {Link} from 'react-router-dom';
 
  export class Navigation extends Component {
 
-     Logout (event){
-        event.preventDefault();
-         fetch(process.env.REACT_APP_API + 'utilisateurs/logout', {
-            method: "POST",
-            headers:{'Content-type': 'application/json',},
-            credentials: 'include'
-        })
-    }
+   Logout = async () =>{
+    await fetch(process.env.REACT_APP_API + 'utilisateurs/logout', {
+        method: "POST",
+        headers:{'Content-type': 'application/json'},
+        credentials: 'include'
+    })
+}
 
     render(){
 
